@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="LudoGameEngine.vcxproj" Id="b44ecbd2-ed7b-4c19-adc3-022d3bc89ce6" />
+</Solution>
