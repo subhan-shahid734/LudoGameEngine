@@ -5,6 +5,9 @@
 
 #include <iostream>
 #include "player.h"
+#include <cstdlib>
+#include <ctime>
+#include "dice.h"
 
 using namespace std;
 
@@ -19,6 +22,17 @@ int main()
     p.gettoken(0).move(6);
 
     cout << p.gettoken(0).getposition() << endl;
+
+
+    srand(time(NULL));
+
+    Dice dice;
+
+    for (int i = 0; i < 10; i++)
+    {
+        dice.roll();
+        cout << dice.getDiceValue() << " ";
+    }
 
     return 0;
 }
