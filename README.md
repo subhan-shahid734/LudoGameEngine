@@ -72,4 +72,41 @@
 - Complete the `Board` class.
 - Connect all engine components.
 
----
+## Day 4 – Game Setup & Integration
+
+Today's work focused on connecting the previously developed classes and beginning the core game engine.
+
+### ✅ Completed
+
+### Game Class
+- Implemented the default `Game` constructor.
+- Implemented `setupPlayers()`.
+- Added input validation for the number of players (2–4).
+- Implemented player name input using `getline()`.
+- Automatically assigned player colors using the `Color` enum.
+- Initialized player objects using the parameterized `Player` constructor.
+
+### Player Class
+- Added a default constructor.
+- Parameterized constructor initializes all four tokens.
+- Verified player creation and token initialization.
+
+### Token Class
+- Added a default constructor for compatibility with default `Player` objects.
+- Corrected the default token position to `-1` (inside the base).
+
+### Dice Class
+- Verified random dice generation using `rand()` and `srand()`.
+
+### Testing
+Current `main.cpp` serves as a temporary testing environment to verify:
+- Player creation
+- Token movement
+- Dice rolling
+- Game::setupPlayers()
+
+This testing code is temporary and will later be replaced by:
+
+```cpp
+Game game;
+game.startGame();
