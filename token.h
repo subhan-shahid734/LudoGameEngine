@@ -6,7 +6,8 @@ private:
 	Color color;
 	int token_ID;
 public:
-	Token( Color col, int id) :position(-1), color(col), token_ID(id){}
+	Token();
+	Token(Color col, int id);
 	bool move(int);
 
 	int getposition()const;

@@ -8,6 +8,7 @@ private:
 	Color color;
 	Token tokens[4];
 public:
+	Player();
     Player(string nm, Color clr);
 	string getname()const;
 	Color getcolor()const;

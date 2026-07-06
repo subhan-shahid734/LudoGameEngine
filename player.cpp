@@ -1,4 +1,5 @@
 #include"player.h"
+Player::Player():name(""),color(Red){}
 Player::Player(string nm, Color clr)
     : name(nm),
     color(clr),

@@ -2,7 +2,9 @@
 #include<iostream>
 using namespace std;
 //Move function
- 
+Token::Token(): position(-1), color(Red), token_ID(0){}
+Token::Token(Color col, int id) :position(-1), color(col), token_ID(id) {}
+
 bool Token::move(int dicevalue) {
 	if (position == -1) {
 		if (dicevalue == 6) {

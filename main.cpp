@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "dice.h"
+#include "game.h"
 
 using namespace std;
 
@@ -34,6 +35,11 @@ int main()
         cout << dice.getDiceValue() << " ";
     }
 
+    
+        Game game;
+        game.setupPlayers();
+
+    
     return 0;
 }
 
