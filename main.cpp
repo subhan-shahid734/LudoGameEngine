@@ -12,34 +12,45 @@
 
 using namespace std;
 
+//int main()
+//{
+//    Player p("Subhan", Red);
+//
+//    cout << p.getname() << endl;
+//
+//    cout << p.gettoken(0).getposition() << endl;
+//
+//    p.gettoken(0).move(6);
+//
+//    cout << p.gettoken(0).getposition() << endl;
+//
+//
+//    srand(time(NULL));
+//
+//    Dice dice;
+//
+//    for (int i = 0; i < 10; i++)
+//    {
+//        dice.roll();
+//        cout << dice.getDiceValue() << " ";
+//    }
+//
+//    cout << endl;
+//        Game game;
+//        game.setupPlayers();
+//
+//    
+//    return 0;
+//
+//
+//}
 int main()
 {
-    Player p("Subhan", Red);
+    srand(time(nullptr));
 
-    cout << p.getname() << endl;
+    Game game;
+    game.startGame();
 
-    cout << p.gettoken(0).getposition() << endl;
-
-    p.gettoken(0).move(6);
-
-    cout << p.gettoken(0).getposition() << endl;
-
-
-    srand(time(NULL));
-
-    Dice dice;
-
-    for (int i = 0; i < 10; i++)
-    {
-        dice.roll();
-        cout << dice.getDiceValue() << " ";
-    }
-
-    
-        Game game;
-        game.setupPlayers();
-
-    
     return 0;
 }
 
