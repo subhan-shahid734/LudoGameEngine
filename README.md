@@ -257,3 +257,14 @@ Version 1.0 – Console Ludo Engine
 ⬜ Board Integration
 ⬜ Complete Gameplay
 ```
+# Day 4---
+- Implemented complete player turn workflow
+- Added dice rolling and token selection
+- Added movable token detection
+- Added input validation for token selection
+- Implemented token movement
+- Added consecutive turns after rolling a 6
+- Implemented nextPlayer() logic
+- Connected winner checking with Player::hasWon()
+- Improved input handling using cin.ignore()
+- Tested complete turn management system
