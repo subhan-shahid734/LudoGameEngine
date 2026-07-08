@@ -8,6 +8,7 @@ private:
 public:
 	Token();
 	Token(Color col, int id);
+	bool canMove(int diceValue)const;
 	bool move(int);
 
 	int getposition()const;

@@ -8,8 +8,11 @@
 #include"game.h"
 #include<iostream>
 #include<string>
+#include <limits>
+
 using namespace std;
 Game::Game() :currentPlayer(0), numberOfPlayers(0) {}
+
 void Game::setupPlayers() {
 	cout << "Enter the number of players (2,4): ";
 	cin >> numberOfPlayers;
@@ -19,7 +22,7 @@ void Game::setupPlayers() {
 		cin >> numberOfPlayers;
 
 	}
-	cin.ignore();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 	for (int i = 0;i < numberOfPlayers;i++) {
 		cout <<endl<< "Enter the " << i + 1 << " name:";
@@ -29,15 +32,105 @@ void Game::setupPlayers() {
 		players[i] = Player(name, c);
 	}
 }
+
 void Game::playTurn() {
-	cout << "Player Turn has been called" << endl;
+	bool rollAgain =true;
+
+	cout << "====================================" << endl;
+	cout << "          " << players[currentPlayer].getname() << "'s Turn" << endl;
+	cout << "====================================" << endl;
+	while (rollAgain) {
+		cout << "Press ENTER to Roll the Dice..." << endl;
+		cin.get();
+
+		dice.roll();
+		int diceValue = dice.getDiceValue();
+
+		cout << "\n Dice: " << diceValue << endl;
+		rollAgain = false;
+		bool anyMove = false;
+
+		cout << "\nMovable Tokens\n";
+
+		for (int i = 0; i < 4; i++) {
+
+			Token& token = players[currentPlayer].gettoken(i);
+
+			if (token.canMove(diceValue)) {
+
+				anyMove = true;
+
+				cout << i + 1 << ": Token " << i + 1 << " (";
+
+				if (token.getposition() == -1)
+					cout << "Base";
+				else if (token.getposition() == 57)
+					cout << "Home";
+				else
+					cout << "Position: " << token.getposition();
+
+				cout << ")" << endl;
+			}
+
+
+		}
+		if (!anyMove) {
+			cout << "\nNo valid moves." << endl;
+			cout << "Turn skipped." << endl;
+			return;
+		}
+		int choice;
+		cout << "Enter the choice (1,2,3,4): ";
+		do {
+
+			cin >> choice;
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << endl;
+			if (choice < 1 || choice > 4) {
+				cout << "Enter Valid Choice: ";
+
+			}
+			else {
+				Token& token = players[currentPlayer].gettoken(choice - 1);
+
+				if (!token.canMove(diceValue)) {
+					cout << "Token " << choice << " Cannot Move." << endl;
+					cout << "Enter a valid token(1 - 4) : ";
+				}
+				else {
+					token.move(diceValue);
+					//cout << "Token " << choice << " moved successfully." << endl;
+					cout << "Current Position: "
+						<< token.getposition()
+						<< endl;
+					break;
+				}
+				
+
+			}
+		} while (true);
+
+		
+		if (diceValue == 6) {
+			
+				cout << "\nYou rolled a 6!" << endl;
+				cout << "You get another turn." << endl;
+			
+			rollAgain = true;
+		}
+
+	}
 }
+
+
 bool Game::checkWinner()const {
-	cout << "check winner is called " << endl;
-	return 1;
+	return players[currentPlayer].haswon();
 }
 void Game::nextPlayer() {
-	cout << "Nect player has been called  " << endl;
+	currentPlayer++;
+	if (currentPlayer == numberOfPlayers) {
+		currentPlayer = 0;
+	}
 }
 void Game::startGame() {
 	cout << "====================================" << endl;
