@@ -1,5 +1,5 @@
 #pragma once
-enum Color { Red, Blue, Green, Yellow };
+enum Color { Red, Green, Yellow,Blue};
 class Token {
 private:	
 	int position;
@@ -14,5 +14,6 @@ public:
 	int getposition()const;
 	Color getcolor()const;
 	int gettokenID()const;
+	void sendToBase();
 };
 

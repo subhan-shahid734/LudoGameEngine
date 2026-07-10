@@ -99,7 +99,32 @@ void Game::playTurn() {
 				}
 				else {
 					token.move(diceValue);
-					//cout << "Token " << choice << " moved successfully." << endl;
+					bool exit = false;
+					for (int i = 0; i < numberOfPlayers; i++)
+					{
+						if (i == currentPlayer)
+						{
+							continue;
+						}
+
+						for (int j = 0; j < 4; j++)
+						{
+							Token& opponentToken = players[i].gettoken(j);
+							if (board.canCapture(token.getposition(), players[currentPlayer].getcolor(), opponentToken.getposition(), players[i].getcolor())) {
+								opponentToken.sendToBase();
+								cout << players[currentPlayer].getname()
+									<< " captured "
+									<< players[i].getname()
+									<< "'s Token "
+									<< j + 1 << "!" << endl;
+								exit = true;
+								break;
+							}
+						}
+						if (exit)
+							break;
+					}
+
 					cout << "Current Position: "
 						<< token.getposition()
 						<< endl;
@@ -141,7 +166,16 @@ void Game::startGame() {
 	cout << "====================================" << endl;
 
 	setupPlayers();
+	cout << "====================================" << endl;
+	cout << "             LUDO BOARD        " << endl;
+	cout << "====================================" << endl;
+	cout << endl;
+
 	while (true) {
+		system("cls");
+		board.displayBoard(players, numberOfPlayers);
+		cout << endl;
+
 		playTurn();
 		if (checkWinner()) {
 			cout << players[currentPlayer].getname() << " has Won the Game" << endl;

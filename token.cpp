@@ -62,3 +62,7 @@ Color Token::getcolor()const {
 int Token::gettokenID()const {
 	return token_ID;
 }
+
+void Token::sendToBase() {
+	position = -1;
+}
