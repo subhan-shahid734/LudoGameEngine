@@ -10,7 +10,7 @@ public:
 	Token(Color col, int id);
 	bool canMove(int diceValue)const;
 	bool move(int);
-
+	bool moveOneStep();
 	int getposition()const;
 	Color getcolor()const;
 	int gettokenID()const;

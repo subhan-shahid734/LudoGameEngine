@@ -48,7 +48,21 @@ bool Token::move(int dicevalue) {
 
 	}
 }
+bool Token::moveOneStep()
+{
+	if (position == -1)
+	{
+		position = 0;
+		return true;
+	}
 
+	if (position >= 57)
+		return false;
+
+	position++;
+
+	return true;
+}
 //Get position
 
 int Token:: getposition()const {

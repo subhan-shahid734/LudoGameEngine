@@ -33,6 +33,16 @@ public:
 	bool isHomePath(int relativePosition)const;
 	bool isHome(int relativePosition)const;
 	void displayBoard(Player players[], int numberOfPlayers) const;
+	const Cell* getRedBase() const;
+	const Cell* getGreenBase() const;
+	const Cell* getYellowBase() const;
+	const Cell* getBlueBase() const;
+	const Cell* getTrack() const;
+	const Cell* getRedHome() const;
+	const Cell* getGreenHome() const;
+	const Cell* getYellowHome() const;
+	const Cell* getBlueHome() const;
+	const char (*getLayout() const)[15];
 	//bool isValidMove(int position)const;
 };
 

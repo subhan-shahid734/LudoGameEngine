@@ -472,3 +472,49 @@ bool Board::isHome(int relativePosition)const {
 	}
 	return false;
 }
+const Cell* Board::getRedBase() const
+{
+    return redBase;
+}
+
+const Cell* Board::getGreenBase() const
+{
+    return greenBase;
+}
+
+const Cell* Board::getYellowBase() const
+{
+    return yellowBase;
+}
+
+const Cell* Board::getBlueBase() const
+{
+    return blueBase;
+}
+const Cell* Board::getTrack() const
+{
+    return track;
+}
+const Cell* Board::getRedHome() const
+{
+    return redHome;
+}
+
+const Cell* Board::getGreenHome() const
+{
+    return greenHome;
+}
+
+const Cell* Board::getYellowHome() const
+{
+    return yellowHome;
+}
+
+const Cell* Board::getBlueHome() const
+{
+    return blueHome;
+}
+const char (*Board::getLayout() const)[15]
+{
+    return layout;
+}

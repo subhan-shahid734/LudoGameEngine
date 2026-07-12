@@ -49,12 +49,38 @@ int main()
     srand(time(nullptr));
 
     Game game;
-    game.startGame();
 
+    int choice;
+
+    cout << "1. Console Mode\n";
+    cout << "2. SFML Mode\n";
+    cout << "Enter Choice: ";
+    cin >> choice;
+    cin.ignore();
+
+    if (choice == 1)
+    {
+        game.startGame();
+    }
+    else if (choice == 2)
+    {
+        game.startSFMLGame();
+    }
 
     return 0;
 }
-
+//#include <SFML/Graphics.hpp>
+//#include <iostream>
+//
+//int main()
+//{
+//    sf::Font font;
+//
+//    if (font.openFromFile("D:\\logic building\\LudoGameEngine\\assets\\calibri.ttf"))
+//        std::cout << "Loaded\n";
+//    else
+//        std::cout << "Failed\n";
+//}
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
