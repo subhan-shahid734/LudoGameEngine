@@ -303,7 +303,7 @@ Version 1.0
 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Ludo-Game.git
+git clone https://github.com/subhan-shahid734/Ludo-Game.git
 ```
 
 2. Open the project in **Visual Studio**
