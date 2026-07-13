@@ -117,7 +117,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>D:\libraries\SFML-3.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\libraries\SFML-3.1.0\include;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,7 +138,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>D:\libraries\SFML-3.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\libraries\SFML-3.1.0\include;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,25 +151,25 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="board.cpp" />
-    <ClCompile Include="Button.cpp" />
-    <ClCompile Include="dice.cpp" />
-    <ClCompile Include="game.cpp" />
-    <ClCompile Include="graphics.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="player.cpp" />
-    <ClCompile Include="TextBox.cpp" />
-    <ClCompile Include="token.cpp" />
+    <ClCompile Include="src\board.cpp" />
+    <ClCompile Include="src\Button.cpp" />
+    <ClCompile Include="src\dice.cpp" />
+    <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\graphics.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\TextBox.cpp" />
+    <ClCompile Include="src\token.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="board.h" />
-    <ClInclude Include="Button.h" />
-    <ClInclude Include="dice.h" />
-    <ClInclude Include="game.h" />
-    <ClInclude Include="graphics.h" />
-    <ClInclude Include="player.h" />
-    <ClInclude Include="TextBox.h" />
-    <ClInclude Include="token.h" />
+    <ClInclude Include="include\board.h" />
+    <ClInclude Include="include\Button.h" />
+    <ClInclude Include="include\dice.h" />
+    <ClInclude Include="include\game.h" />
+    <ClInclude Include="include\graphics.h" />
+    <ClInclude Include="include\player.h" />
+    <ClInclude Include="include\TextBox.h" />
+    <ClInclude Include="include\token.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
