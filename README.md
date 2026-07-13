@@ -32,11 +32,6 @@ The project was developed with a strong focus on **software engineering principl
 
 ---
 
-## Winner Screen
-
-![Winner Screen](assets/images/README/winner.png)
-
----
 
 #  Features
 
