@@ -22,7 +22,7 @@ The project was developed with a strong focus on **software engineering principl
 
 ## Player Name Input
 
-![Player Name Input](assets/images/README/player-name.png)
+![Player Name Input](assets/images/README/player-name-input.png)
 
 ---
 
