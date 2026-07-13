@@ -43,7 +43,6 @@ public:
 	const Cell* getYellowHome() const;
 	const Cell* getBlueHome() const;
 	const char (*getLayout() const)[15];
-	//bool isValidMove(int position)const;
 };
 
 

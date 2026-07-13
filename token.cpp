@@ -1,7 +1,6 @@
 #include"token.h"
 #include<iostream>
 using namespace std;
-//Move function
 Token::Token(): position(-1), color(Red), token_ID(0){}
 Token::Token(Color col, int id) :position(-1), color(col), token_ID(id) {}
 bool Token:: canMove(int dicevalue)const {
@@ -63,16 +62,13 @@ bool Token::moveOneStep()
 
 	return true;
 }
-//Get position
 
 int Token:: getposition()const {
 	return position;
 }
-//Get color
 Color Token::getcolor()const {
 	return color;
 }
-//Get id
 int Token::gettokenID()const {
 	return token_ID;
 }

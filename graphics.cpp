@@ -37,11 +37,11 @@ Graphics::Graphics()
   
     if (!font.openFromFile("D:\\logic building\\LudoGameEngine\\assets\\calibri.ttf"))
     {
-        std::cout << "Font failed to load\n";
+      //  std::cout << "Font failed to load\n";
     }
     else
     {
-        std::cout << "Font loaded successfully\n";
+        //std::cout << "Font loaded successfully\n";
     }
     startButton = new Button(
         font,
@@ -122,71 +122,81 @@ Graphics::Graphics()
     if (!menuBackgroundTexture.loadFromFile(
         "D:\\logic building\\LudoGameEngine\\assets\\Images\\image1.png"))
     {
-        std::cout << "Menu background failed to load\n";
+       // std::cout << "Menu background failed to load\n";
     }
     else
     {
-        std::cout << "Menu background loaded successfully\n";
+       // std::cout << "Menu background loaded successfully\n";
 
     }
     if (!playerSelectionTexture.loadFromFile(
         "D:\\logic building\\LudoGameEngine\\assets\\Images\\player_selection_background.png"))
     {
-        std::cout << "Player Selection background failed to load\n";
+        //std::cout << "Player Selection background failed to load\n";
     }
     else
     {
-        std::cout << "Player Selection background loaded successfully\n";
+        //std::cout << "Player Selection background loaded successfully\n";
     }
     if (!playerNameTexture.loadFromFile(
         "D:\\logic building\\LudoGameEngine\\assets\\Images\\player_name_background.png"))
     {
-        std::cout << "Player Name background failed to load\n";
+       // std::cout << "Player Name background failed to load\n";
     }
     else
     {
-        std::cout << "Player Name background loaded successfully\n";
+       // std::cout << "Player Name background loaded successfully\n";
     }
     if (!backgroundMusic.openFromFile(
         "D:\\logic building\\LudoGameEngine\\assets\\music\\background_music.mp3"))
     {
-        std::cout << "Menu music failed to load\n";
+      //  std::cout << "Menu music failed to load\n";
       
     }
     else
     {
-        std::cout << "Menu music loaded successfully\n";
+       // std::cout << "Menu music loaded successfully\n";
         backgroundMusic.setLooping(true);
         backgroundMusic.setVolume(25.f);
         backgroundMusic.play();
     }
     if (!diceBuffer.loadFromFile("D:\\logic building\\LudoGameEngine\\assets\\Sounds\\dice_sound.ogg"))
     {
-        std::cout << "Dice sound failed to load\n";
+        //std::cout << "Dice sound failed to load\n";
     }
     else
     {
-        std::cout << "Dice sound loaded successfully\n";
+        //std::cout << "Dice sound loaded successfully\n";
     }
     if (!captureBuffer.loadFromFile(
         "D:\\logic building\\LudoGameEngine\\assets\\Sounds\\capture.ogg"))
     {
-        std::cout << "Capture sound failed to load\n";
+        //std::cout << "Capture sound failed to load\n";
     }
     else
     {
-        std::cout << "Capture sound loaded successfully\n";
+       // std::cout << "Capture sound loaded successfully\n";
     }
     if (!winnerBuffer.loadFromFile(
         "D:\\logic building\\LudoGameEngine\\assets\\Sounds\\victory.ogg"))
     {
-        std::cout << "Winner sound failed to load\n";
+       // std::cout << "Winner sound failed to load\n";
     }
     else
     {
-        std::cout << "Winner sound loaded successfully\n";
+      //  std::cout << "Winner sound loaded successfully\n";
     }
+    if (!starTexture.loadFromFile("Assets/Images/star.png"))
+    {
+        std::cout << "Star image failed to load!\n";
+    }
+    else
+    {
+        std::cout << "Star image loaded successfully!\n";
+    }
+    starSprite.emplace(starTexture);
 
+    starSprite->setScale({ 0.25f, 0.25f });
     winnerSound.setVolume(80.f);
 
     captureSound.setVolume(75.f);
@@ -225,7 +235,6 @@ void Graphics::updateDiceAnimation()
 
     float elapsed = diceClock.getElapsedTime().asSeconds();
 
-    // Change the displayed face every few milliseconds
     if (elapsed - lastFaceChange >= faceChangeInterval)
     {
         displayedDiceValue = rand() % 6 + 1;
@@ -233,7 +242,6 @@ void Graphics::updateDiceAnimation()
         lastFaceChange = elapsed;
     }
 
-    // Stop animation after the animation duration
     if (elapsed >= animationDuration)
     {
         diceAnimating = false;
@@ -344,7 +352,7 @@ void Graphics::draw(
             int row = -1;
             int col = -1;
 
-            // We'll continue here next.
+           
             if (token.getposition() == -1)
             {
                 switch (players[p].getcolor())
@@ -373,9 +381,7 @@ void Graphics::draw(
             else if (token.getposition() < 52)
 
             {
-                //std::cout << "MAIN TRACK : "
-                //    << token.getposition()
-                //    << std::endl;
+               
                 int global = board.getGlobalPosition(
                     token.getposition(),
                     players[p].getcolor());
@@ -387,9 +393,7 @@ void Graphics::draw(
             
             else if (token.getposition() < 57)
             {
-                //std::cout << "HOME PATH : "
-                //    << token.getposition()
-                //    << std::endl;
+                
                 int homeIndex = token.getposition() - 52;
 
                 switch (players[p].getcolor())
@@ -438,7 +442,7 @@ void Graphics::draw(
     {
         for (int t = 0; t < 4; t++)
         {
-            // Highlight only the current player's movable tokens
+            
             if (p == currentPlayer && movableTokens[t])
             {
                 tokenShapes[p][t].setOutlineThickness(5.f);
@@ -456,33 +460,7 @@ void Graphics::draw(
         }
     }
 }
-//void Graphics::drawBoard()
-//{
-//    const float CELL_SIZE = 40.f;
-//
-//    for (int row = 0; row < 15; row++)
-//    {
-//        for (int col = 0; col < 15; col++)
-//        {
-//            sf::RectangleShape cell;
-//
-//            cell.setSize({ CELL_SIZE, CELL_SIZE });
-//
-//            cell.setPosition({
-//                col * CELL_SIZE,
-//                row * CELL_SIZE
-//                });
-//
-//            cell.setFillColor(sf::Color::White);
-//
-//            cell.setOutlineThickness(1.f);
-//
-//            cell.setOutlineColor(sf::Color::Black);
-//
-//            window.draw(cell);
-//        }
-//    }
-//}
+
 void Graphics::drawBoard(const Board& board)
 {
     const float CELL_SIZE = 45.f;
@@ -535,11 +513,65 @@ void Graphics::drawBoard(const Board& board)
 
             cell.setOutlineThickness(0.5f);
             cell.setOutlineColor(sf::Color(170, 170, 170));
-          //  cell.setOutlineColor(sf::Color::Black);
 
             window.draw(cell);
         }
+      
+       
     }
+    Cell safeSquares[4] =
+    {
+        {2, 6},
+        {6, 12},
+        {12, 8},
+        {8, 2}
+    };
+    for (int i = 0; i < 4; i++)
+{
+    int row = safeSquares[i].row;
+    int col = safeSquares[i].col;
+
+    starSprite->setPosition({
+        col * CELL_SIZE,
+        row * CELL_SIZE
+    });
+
+    window.draw(*starSprite);
+}
+    Cell coloredSquares[4] =
+    {
+        {6,1},  
+        {1,8},   
+        {13,6},   
+        {8,13}    
+    };
+
+    sf::Color colors[4] =
+    {
+        sf::Color(220,40,40),    
+        sf::Color(40,180,40),    
+        sf::Color(240,220,40),   
+        sf::Color(40,80,220)     
+    };
+    for (int i = 0; i < 4; i++)
+    {
+        sf::RectangleShape entrySquare;
+
+        entrySquare.setSize({ CELL_SIZE, CELL_SIZE });
+
+        entrySquare.setPosition({
+            coloredSquares[i].col * CELL_SIZE,
+            coloredSquares[i].row * CELL_SIZE
+            });
+
+        entrySquare.setFillColor(colors[i]);
+
+        entrySquare.setOutlineThickness(0.5f);
+        entrySquare.setOutlineColor(sf::Color(170, 170, 170));
+
+        window.draw(entrySquare);
+    }
+
 }
 void Graphics::drawInfoPanel(const Player& currentPlayer, int diceValue)
 {
@@ -618,7 +650,6 @@ void Graphics::drawInfoPanel(const Player& currentPlayer, int diceValue)
         break;
     }
 
-   // turnColorText.setPosition({ 810.f,110.f });
     auto turnBounds = turnColorText.getLocalBounds();
 
     turnColorText.setOrigin(
@@ -662,9 +693,7 @@ void Graphics::drawInfoPanel(const Player& currentPlayer, int diceValue)
     playerName.setPosition(sf::Vector2f(930.f, 290.f));
 
     window.draw(playerName);
-    //
-    //window.draw(title);
-
+    
     sf::Text diceTitle(font);
 
     diceTitle.setString("Dice");
@@ -677,8 +706,6 @@ void Graphics::drawInfoPanel(const Player& currentPlayer, int diceValue)
 
     window.draw(diceTitle);
     //
-    // ================= Status Title =================
-
     sf::Text statusTitle(font);
 
     statusTitle.setString("Status");
@@ -1159,7 +1186,7 @@ void Graphics::resetClickedToken()
 {
     clickedToken = -1;
 }
-void Graphics::updateTokenClick()
+void Graphics::updateTokenClick(int currentPlayer)
 {
     if (!mouseClicked)
         return;
@@ -1174,7 +1201,7 @@ void Graphics::updateTokenClick()
 
     for (int t = 0; t < 4; t++)
     {
-        if (tokenShapes[0][t].getGlobalBounds().contains(mousePos))
+        if (tokenShapes[currentPlayer][t].getGlobalBounds().contains(mousePos))
         {
             clickedToken = t;
             break;

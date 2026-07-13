@@ -14,9 +14,9 @@ void Board::initializeTrack()
 	
         const Cell coordinates[52] =
 {
-    {6,1},   // 0
-    {6,2},   // 1
-    {6,3},   // 2
+    {6,1},  
+    {6,2},  
+    {6,3},   
     {6,4},   // 3
     {6,5},   // 4
 
@@ -85,9 +85,9 @@ void Board::initializeTrack()
 	{
 		track[i] = coordinates[i];
 	}
-
-
+   
 }
+
 void Board::initializeLayout()
 {
     for (int i = 0; i < 15; i++)
@@ -97,7 +97,6 @@ void Board::initializeLayout()
             layout[i][j] = ' ';
         }
     }
-    //red home 
     for (int i = 0; i <= 5; i++)
     {
         for (int j = 0; j <= 5; j++)
@@ -112,7 +111,6 @@ void Board::initializeLayout()
             }
         }
     }
-    //green
     for (int i = 0; i <= 5; i++)
     {
         for (int j = 9; j <= 14; j++)
@@ -127,7 +125,6 @@ void Board::initializeLayout()
             }
         }
     }
-    //yellow
     for (int i = 9; i <= 14; i++)
     {
         for (int j = 0; j <= 5; j++)
@@ -142,7 +139,6 @@ void Board::initializeLayout()
             }
         }
     }
-    //blue
     for (int i = 9; i <= 14; i++)
     {
         for (int j = 9; j <= 14; j++)
@@ -157,7 +153,6 @@ void Board::initializeLayout()
             }
         }
     }
-    //Movement paths
     for (int i = 0;i < 52;i++) {
         layout[track[i].row][track[i].col] = '.';
     }
@@ -174,11 +169,7 @@ void Board::initializeLayout()
         layout[blueHome[i].row][blueHome[i].col] = 'b';
     }
 
-    for (int i = 6;i <= 8;i++) {
-        for (int j = 6;j <= 8;j++) {
-            layout[i][j] = 'H';
-        }
-    }
+    
 }
 void Board::initializeHomePaths() {
 const Cell redCoordinates[5] =
@@ -201,20 +192,20 @@ const Cell greenCoordinates[5] =
 
 const Cell yellowCoordinates[5] =
 {
-    {7,13},
-    {7,12},
-    {7,11},
-    {7,10},
-    {7,9}
-};
-
-const Cell blueCoordinates[5] =
-{
     {13,7},
     {12,7},
     {11,7},
     {10,7},
     {9,7}
+};
+
+const Cell blueCoordinates[5] =
+{
+    {7,13},
+    {7,12},
+    {7,11},
+    {7,10},
+    {7,9}
 };
 
 for (int i = 0; i < 5; i++)
@@ -421,14 +412,38 @@ void Board::displayBoard(Player players[], int numberOfPlayers) const
 
     cout << endl;
 }
-int Board::getGlobalPosition(int relativePosition, Color color)const {
-	int start = color * 13;
-	int globalPosition;
-	globalPosition = relativePosition + start;
-	if (globalPosition >= 52) {
-		return globalPosition % 52;
-	}
-	return globalPosition;
+
+int Board::getGlobalPosition(int relativePosition, Color color) const
+{
+    int start = 0;
+
+    switch (color)
+    {
+    case Red:
+        start = 0;
+        break;
+
+    case Green:
+        start = 13;
+        break;
+
+    case Yellow:
+        start = 39;
+        break;
+
+    case Blue:
+        start = 26;
+        break;
+    }
+
+    
+
+    int global = relativePosition + start;
+
+    if (global >= 52)
+        global %= 52;
+
+    return global;
 }
 bool Board::isSafeSquare(int position, Color color)const {
 	int global = Board::getGlobalPosition(position, color);

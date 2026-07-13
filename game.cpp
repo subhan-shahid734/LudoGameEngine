@@ -1,10 +1,3 @@
-//#include"token.h"
-//#include<iostream>
-//using namespace std;
-//if (token.move(dicevalue)) {
-//	cout<<"sucess"
-//}
-
 #include"game.h"
 #include<iostream>
 #include<string>
@@ -13,25 +6,7 @@
 using namespace std;
 Game::Game() :currentPlayer(0), numberOfPlayers(0) {}
 
-//void Game::setupPlayers() {
-//	cout << "Enter the number of players (2,4): ";
-//	cin >> numberOfPlayers;
-//	while(numberOfPlayers < 2 || numberOfPlayers>4) {
-//		cout << "Invalid Input\n";
-//		cout << "Enter the number of players:(2,4)";
-//		cin >> numberOfPlayers;
-//
-//	}
-//	cin.ignore(numeric_limits<streamsize>::max(), '\n');
-//
-//	for (int i = 0;i < numberOfPlayers;i++) {
-//		cout <<endl<< "Enter the " << i + 1 << " name:";
-//		string name;
-//		getline(cin, name);
-//		Color c = static_cast<Color>(i);
-//		players[i] = Player(name, c);
-//	}
-//}
+
 void Game::setupPlayers() {
 	numberOfPlayers = graphics.getSelectedPlayers();
 
@@ -40,6 +15,7 @@ void Game::setupPlayers() {
 		Color c = static_cast<Color>(i);
 		players[i] = Player(name, c);
 	}
+	
 }
 
 void Game::playTurn() {
@@ -108,30 +84,7 @@ void Game::playTurn() {
 				}
 				else {
 					token.move(diceValue);
-					//bool exit = false;
-					//for (int i = 0; i < numberOfPlayers; i++)
-					//{
-					//	if (i == currentPlayer)
-					//	{
-					//		continue;
-					//	}
-
-					//	for (int j = 0; j < 4; j++)
-					//	{
-					//		Token& opponentToken = players[i].gettoken(j);
-					//		if (board.canCapture(token.getposition(), players[currentPlayer].getcolor(), opponentToken.getposition(), players[i].getcolor())) {
-					//			opponentToken.sendToBase();
-					//			cout << players[currentPlayer].getname()
-					//				<< " captured "
-					//				<< players[i].getname()
-					//				<< "'s Token "
-					//				<< j + 1 << "!" << endl;
-					//			exit = true;
-					//			break;
-					//		}
-					//	}
-					//	if (exit)
-					//		break;
+					
 					}
 
 					cout << "Current Position: "
@@ -222,11 +175,8 @@ void Game::startGame() {
 }
 void Game::startSFMLGame()
 {
-	//setupPlayers();
 	graphics.setStatusMessage("Press ENTER to Roll");
-	//gameOver = true;
-	//winner = &players[0];
-	//graphics.playWinnerSound();
+	
 	while (graphics.isWindowOpen())
 	{
 		graphics.processEvents();
@@ -284,13 +234,7 @@ void Game::startSFMLGame()
 			{
 				graphics.setCurrentScreen(ScreenState::PlayerSelection);
 			}
-			//if (graphics.isStartGameButtonClicked())
-			//{
-			//	for (int i = 0; i < graphics.getSelectedPlayers(); i++)
-			//	{
-			//		std::cout << graphics.getPlayerName(i) << std::endl;
-			//	}
-			//}
+			
 			if (graphics.isStartGameButtonClicked())
 			{
 				setupPlayers();
@@ -300,7 +244,8 @@ void Game::startSFMLGame()
 			graphics.updatePlayerNameSelection();
 
 			graphics.clear();
-
+			
+			
 			graphics.draw(
 				players,
 				numberOfPlayers,
@@ -315,22 +260,8 @@ void Game::startSFMLGame()
 		}
 		graphics.updateDiceAnimation();
 		graphics.updateTokenAnimations();
-		//if (gameOver)
-		//{
-		//	graphics.clear();
-
-		//	graphics.draw(
-		//		players,
-		//		numberOfPlayers,
-		//		board,
-		//		dice.getDiceValue(),
-		//		currentPlayer,
-		//		movableTokens);
-
-		//	graphics.display();
-
-		//	continue;
-		//}
+		graphics.updateTokenClick(currentPlayer);
+		
 		if (gameOver)
 		{
 			graphics.updateWinnerAnimation();
@@ -348,7 +279,7 @@ void Game::startSFMLGame()
 			{
 				if (enterPressed && !enterWasPressed)
 				{
-					graphics.playDiceSound();      // <-- add this
+					graphics.playDiceSound();    
 					graphics.startDiceAnimation();
 				}
 			}
@@ -365,8 +296,7 @@ void Game::startSFMLGame()
 
 		enterWasPressed = enterPressed;
 
-		int pressedToken = graphics.getSelectedToken();
-
+		int pressedToken = graphics.getClickedToken();
 		if (gameState == WaitingForToken)
 		{
 			if (pressedToken != -1 && !numberKeyWasPressed)
@@ -377,12 +307,12 @@ void Game::startSFMLGame()
 				{
 					finishTurn();
 				}
+				graphics.resetClickedToken();
 			}
 		}
 
 		numberKeyWasPressed = (pressedToken != -1);
 
-		// These MUST stay inside the while loop
 		graphics.clear();
 
 		graphics.draw(
@@ -524,7 +454,6 @@ bool Game::hasMovableToken() const
 }
 void Game::finishTurn()
 {
-	// Remove highlights
 	for (int i = 0; i < 4; i++)
 	{
 		movableTokens[i] = false;

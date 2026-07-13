@@ -7,6 +7,7 @@
 #include <SFML/Audio.hpp>
 #include "Button.h"
 #include "TextBox.h"
+#include <optional>
 enum class ScreenState
 {
     MainMenu,
@@ -86,6 +87,8 @@ private:
     TextBox* playerNameBoxes[4] = { nullptr, nullptr, nullptr, nullptr };
 
     TextBox* getSelectedTextBox();
+    sf::Texture starTexture;
+    std::optional<sf::Sprite> starSprite;
 
 
 public:
@@ -162,5 +165,5 @@ public:
     int getClickedToken() const;
 
     void resetClickedToken();
-    void updateTokenClick();
+    void updateTokenClick(int currentPlayer);
 };
