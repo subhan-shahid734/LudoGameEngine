@@ -16,25 +16,25 @@ The project was developed with a strong focus on **software engineering principl
 
 ## Player Selection
 
-![Player Selection](Assets/Images/README/player-selection.png)
+![Player Selection](assets/images/README/player-selection.png)
 
 ---
 
 ## Player Name Input
 
-![Player Name Input](Assets/Images/README/player-name.png)
+![Player Name Input](assets/images/README/player-name.png)
 
 ---
 
 ## Gameplay
 
-![Gameplay](Assets/Images/README/game.png)
+![Gameplay](assets/images/README/game.png)
 
 ---
 
 ## Winner Screen
 
-![Winner Screen](Assets/Images/README/winner.png)
+![Winner Screen](assets/images/README/winner.png)
 
 ---
 
