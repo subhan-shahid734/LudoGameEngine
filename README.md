@@ -28,7 +28,7 @@ The project was developed with a strong focus on **software engineering principl
 
 ## Gameplay
 
-![Gameplay](Assets/Images/README/gameplay.png)
+![Gameplay](Assets/Images/README/game.png)
 
 ---
 
