@@ -10,7 +10,7 @@ The project was developed with a strong focus on **software engineering principl
 
 ## Main Menu
 
-![Main Menu](Assets/Images/README/main-menu.png)
+![Main Menu](assets/images/README/main-menu.png)
 
 ---
 
