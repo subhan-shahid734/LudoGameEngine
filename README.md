@@ -81,7 +81,7 @@ The project was developed with a strong focus on **software engineering principl
 
 ---
 
-# 🛠 Technologies Used
+# Technologies Used
 
 - C++
 - SFML 3.1
@@ -91,7 +91,7 @@ The project was developed with a strong focus on **software engineering principl
 
 ---
 
-#  Project Structure
+# Project Structure
 
 ```text
 Ludo-Game
@@ -127,11 +127,11 @@ Ludo-Game
 
 ---
 
-#  Development Timeline
+# Development Timeline
 
 ---
 
-# 🏛️ Milestone 1 — Project Architecture
+# Milestone 1 — Project Architecture
 
 ### Objectives
 
@@ -276,14 +276,14 @@ Convert the console engine into a graphical desktop application.
 ```text
 Version 1.0
 
-✅ Complete Game Engine
-✅ Complete SFML Interface
-✅ Mouse Interaction
-✅ Object-Oriented Architecture
-✅ Interactive Menus
-✅ Winner Screen
-✅ Safe Squares
-✅ Professional UI
+ Complete Game Engine
+ Complete SFML Interface
+ Mouse Interaction
+ Object-Oriented Architecture
+ Interactive Menus
+ Winner Screen
+ Safe Squares
+ Professional UI
 ```
 
 ---
@@ -349,4 +349,4 @@ FAST – National University of Computer & Emerging Sciences
 
 ---
 
-⭐ If you like this project, consider giving it a **Star** on GitHub.
+If you like this project, consider giving it a **Star** on GitHub.
