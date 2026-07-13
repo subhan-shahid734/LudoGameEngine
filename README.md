@@ -1,270 +1,352 @@
-# Development Log
+# 🎲 Ludo Game Engine (C++ | SFML)
+
+A modern, object-oriented implementation of the classic **Ludo** board game built using **C++** and **SFML**.
+
+The project was developed with a strong focus on **software engineering principles**, **clean architecture**, **object-oriented programming**, and **reusable game engine design**. The graphical interface is built on top of an independent game engine, making the project easy to extend with future features such as AI, networking, animations, and save/load functionality.
 
 ---
 
-# Day 1 — Project Planning & Core Design
+# 📸 Screenshots
 
-## Objectives
+## Main Menu
 
-- Planned the architecture of the Ludo Game Engine.
-- Decided to build a reusable game engine before adding a graphical interface.
-- Established the project development workflow.
-
-## Completed
-
-- Designed and implemented the `Token` class.
-- Implemented token movement logic.
-- Added support for:
-  - Base position (`-1`)
-  - Starting position (`0`)
-  - Home position (`57`)
-- Added getters for token information.
-- Designed and implemented the `Player` class.
-- Each player owns four tokens.
-- Implemented player win condition (`hasWon()`).
-
-## Design Decisions
-
-- `Player` owns all four `Token` objects.
-- `Token` is responsible only for its own state.
-- `Game` will control all gameplay.
-- Followed encapsulation and clean OOP principles.
-
-## Testing
-
-- Tested token movement.
-- Verified player initialization.
-- Verified win-condition logic.
+![Main Menu](Assets/Images/README/main-menu.png)
 
 ---
 
-# Day 2 — Dice & Board Architecture
+## Player Selection
 
-## Objectives
-
-- Design and implement the `Dice` component.
-- Begin designing the `Board` architecture.
-
-## Completed
-
-- Designed and implemented the `Dice` class.
-- Added:
-  - Constructor
-  - Dice rolling logic
-  - Current dice value storage
-  - Getter function
-- Successfully tested multiple random dice rolls.
-
-## Design Decisions
-
-- Dice stores only the latest rolled value.
-- Random seed (`srand(time(NULL))`) is initialized once in `main()`.
-- `Board` will not own tokens.
-- `Player` continues to own all tokens.
-- `Board` will only analyze board-related rules.
-- Decided to keep the `Board` stateless (no data members).
-
-## Board Responsibilities (Planned)
-
-- Detect safe squares.
-- Detect home position.
-- Validate board-related rules.
-- Handle board logic without owning game objects.
-
-## Testing
-
-- Verified dice values remain between **1–6**.
-- Confirmed the getter returns the latest rolled value.
-
-### 🚀 Next Goal
-
-- Design the `Game` class.
-- Complete the `Board` class.
-- Connect all engine components.
+![Player Selection](Assets/Images/README/player-selection.png)
 
 ---
 
-# Day 3 — Player Setup & Game Initialization
+## Player Name Input
 
-## Objectives
+![Player Name Input](Assets/Images/README/player-name.png)
 
-- Begin implementing the `Game` class.
-- Connect previously developed engine components.
+---
 
-## Completed
+## Gameplay
 
-### Game Class
+![Gameplay](Assets/Images/README/gameplay.png)
 
-- Implemented the default `Game` constructor.
-- Implemented `setupPlayers()`.
-- Added input validation for the number of players (2–4).
-- Implemented player name input using `getline()`.
-- Automatically assigned player colors using the `Color` enum.
-- Initialized player objects using the parameterized `Player` constructor.
+---
 
-### Player Class
+## Winner Screen
 
-- Added a default constructor.
-- Parameterized constructor initializes all four tokens.
-- Verified player creation and token initialization.
+![Winner Screen](Assets/Images/README/winner.png)
 
-### Token Class
+---
 
-- Added a default constructor for compatibility with default `Player` objects.
-- Corrected the default token position to **-1** (inside the base).
+#  Features
 
-### Dice Class
+##  Gameplay
 
-- Verified random dice generation using `rand()` and `srand()`.
-
-## Testing
-
-Temporary testing in `main.cpp` verified:
-
-- Player creation
-- Token movement
+- Classic Ludo gameplay
+- Supports **2–4 players**
+- Complete turn management
 - Dice rolling
-- `Game::setupPlayers()`
-
-Temporary testing code:
-
-```cpp
-Game game;
-game.setupPlayers();
-```
-
-### 🚀 Next Goal
-
-- Implement the core game loop.
-- Make the `Game` class the central controller of the engine.
+- Token movement
+- Safe squares
+- Home paths
+- Winner detection
+- Extra turn after rolling a **6**
 
 ---
 
-# Day 4 — Core Game Loop & Engine Integration
+##  Graphical Interface
 
-## Objectives
-
-- Implement the central game control flow.
-- Integrate all previously developed engine components.
-
-## Completed
-
-### Game Class
-
-- Implemented `Game::startGame()`.
-- Added a professional welcome screen.
-- Connected `setupPlayers()` with the game engine.
-- Implemented the main game loop.
-- Added temporary implementations of:
-  - `playTurn()`
-  - `checkWinner()`
-  - `nextPlayer()`
-- Successfully connected all engine components.
-
-### Main Function
-
-Simplified `main.cpp`.
-
-The program now starts through the `Game` class instead of testing individual classes.
-
-```cpp
-int main()
-{
-    srand(time(nullptr));
-
-    Game game;
-    game.startGame();
-
-    return 0;
-}
-```
-
-## Design Decisions
-
-- `Game` is now the central controller of the application.
-- `main()` contains no gameplay logic.
-- `currentPlayer` is managed entirely by the `Game` class.
-- The game loop is implemented using an infinite loop (`while(true)`).
-- The game terminates using `break` when a winner is found.
-- `playTurn()` is responsible for one complete player turn.
-- `nextPlayer()` is executed only if no player has won.
-
-## Testing
-
-Successfully verified:
-
-- Welcome screen displays correctly.
-- Player setup works correctly.
-- Multiple-word player names are accepted.
-- `startGame()` executes functions in the correct order.
-- Winner announcement displays correctly.
-- Game terminates correctly after a winner is found.
-- `main()` successfully launches the complete game engine.
-
-## Lessons Learned
-
-During implementation, two different game loop designs were evaluated:
-
-```cpp
-while (!checkWinner())
-```
-
-and
-
-```cpp
-while (true)
-```
-
-After discussing both approaches, the second design was selected because it better represents the natural lifecycle of a Ludo game:
-
-1. A player takes a turn.
-2. Check whether the player has won.
-3. If a winner exists, terminate the game.
-4. Otherwise, move to the next player.
-
-This approach also avoids performing an unnecessary winner check before the first turn begins.
-
-## 🚀 Next Goal
-
-Implement `Game::playTurn()`.
-
-Planned responsibilities:
-
-- Roll the dice.
-- Display the dice value.
-- Allow the current player to select a token.
-- Move the selected token.
-- Handle extra turns after rolling a **6**.
-- Integrate board validation.
+- Modern SFML interface
+- Main Menu
+- Player Selection Screen
+- Player Name Input Screen
+- Interactive buttons
+- Mouse-based token selection
+- Token highlighting
+- Board rendering
+- Winner Screen
+- Background music
 
 ---
 
-# Current Project Status
+##  Software Engineering
+
+- Object-Oriented Design
+- Modular architecture
+- Encapsulation
+- Separation of concerns
+- Reusable Game Engine
+- Independent UI layer
+- Clean class hierarchy
+
+---
+
+# 🛠 Technologies Used
+
+- C++
+- SFML 3.1
+- Object-Oriented Programming
+- Git
+- GitHub
+
+---
+
+#  Project Structure
 
 ```text
-Version 1.0 – Console Ludo Engine
-
-✅ Token Class
-✅ Player Class
-✅ Dice Class
-✅ Initial Board Design
-✅ Game::setupPlayers()
-✅ Game::startGame()
-
-⬜ Game::playTurn()
-⬜ Game::nextPlayer()
-⬜ Game::checkWinner()
-⬜ Board Integration
-⬜ Complete Gameplay
+Ludo-Game
+│
+├── Assets
+│   ├── Images
+│   ├── Music
+│   └── Sounds
+│
+├── src
+│   ├── Board.cpp
+│   ├── Button.cpp
+│   ├── Dice.cpp
+│   ├── Game.cpp
+│   ├── Graphics.cpp
+│   ├── Player.cpp
+│   ├── TextBox.cpp
+│   ├── Token.cpp
+│   └── main.cpp
+│
+├── include
+│   ├── Board.h
+│   ├── Button.h
+│   ├── Dice.h
+│   ├── Game.h
+│   ├── Graphics.h
+│   ├── Player.h
+│   ├── TextBox.h
+│   └── Token.h
+│
+└── README.md
 ```
-# Day 4---
-- Implemented complete player turn workflow
-- Added dice rolling and token selection
-- Added movable token detection
-- Added input validation for token selection
-- Implemented token movement
-- Added consecutive turns after rolling a 6
-- Implemented nextPlayer() logic
-- Connected winner checking with Player::hasWon()
-- Improved input handling using cin.ignore()
-- Tested complete turn management system
+
+---
+
+#  Development Timeline
+
+---
+
+# 🏛️ Milestone 1 — Project Architecture
+
+### Objectives
+
+- Planned the overall software architecture.
+- Designed a reusable game engine before implementing graphics.
+- Defined responsibilities for each class.
+
+### Completed
+
+- Designed the `Token` class.
+- Implemented token movement.
+- Added support for:
+  - Base Position (`-1`)
+  - Start Position (`0`)
+  - Home Position (`57`)
+- Designed and implemented the `Player` class.
+- Implemented player win detection.
+
+### Design Decisions
+
+- Player owns all four Token objects.
+- Token manages only its own state.
+- Game controls all gameplay.
+- Applied clean OOP principles.
+
+---
+
+# Milestone 2 — Dice & Board Design
+
+### Objectives
+
+- Implement the Dice system.
+- Design Board architecture.
+
+### Completed
+
+- Implemented Dice class.
+- Random dice generation.
+- Current dice value storage.
+- Board architecture planning.
+
+### Board Responsibilities
+
+- Safe square detection
+- Home path validation
+- Board rule management
+- Stateless board design
+
+---
+
+# Milestone 3 — Game Initialization
+
+### Objectives
+
+- Integrate engine components.
+
+### Completed
+
+- Implemented Game class.
+- Player setup.
+- Player color assignment.
+- Name input.
+- Validation for 2–4 players.
+
+---
+
+# Milestone 4 — Console Game Engine
+
+### Objectives
+
+Build a fully playable console version.
+
+### Completed
+
+- Main game loop
+- Turn management
+- Dice rolling
+- Token selection
+- Movable token detection
+- Token movement
+- Winner detection
+- Extra turn after rolling a **6**
+- Player switching
+- Engine integration
+
+### Result
+
+A fully functional console-based Ludo game engine.
+
+---
+
+# Milestone 5 — SFML Graphical Interface
+
+### Objectives
+
+Convert the console engine into a graphical desktop application.
+
+### Completed
+
+### Interface
+
+- Main Menu
+- Player Selection
+- Player Name Input
+- Background music
+- Interactive buttons
+- Hover effects
+
+### Gameplay
+
+- Graphical board
+- Token rendering
+- Mouse-based token selection
+- Movable token highlighting
+- Dice rendering
+- Winner screen
+
+### Visual Improvements
+
+- Safe-square stars
+- Colored entry squares
+- Improved board presentation
+
+### Engine Integration
+
+- Connected SFML with the console engine.
+- Removed console setup from graphical mode.
+- Connected player setup with the UI.
+- Synced board rendering with game logic.
+
+### Bug Fixes
+
+- Fixed Blue/Yellow track mapping.
+- Corrected token rendering.
+- Fixed player initialization.
+- Improved UI responsiveness.
+
+---
+
+# Current Status
+
+```text
+Version 1.0
+
+✅ Complete Game Engine
+✅ Complete SFML Interface
+✅ Mouse Interaction
+✅ Object-Oriented Architecture
+✅ Interactive Menus
+✅ Winner Screen
+✅ Safe Squares
+✅ Professional UI
+```
+
+---
+
+# Future Improvements
+
+- Dice rolling animation
+- Token movement animation
+- Capture animation
+- Sound effects expansion
+- Save / Load game
+- AI opponent
+- Online multiplayer
+- Game settings
+- Themes
+- Statistics system
+
+---
+
+# How to Run
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/Ludo-Game.git
+```
+
+2. Open the project in **Visual Studio**
+
+3. Ensure **SFML 3.1** is properly configured.
+
+4. Build the project.
+
+5. Run.
+
+---
+
+# Concepts Practiced
+
+- Object-Oriented Programming
+- Classes & Objects
+- Constructors
+- Encapsulation
+- Composition
+- Game Loop
+- State Management
+- Event Handling
+- Mouse Input
+- Graphics Programming
+- Software Architecture
+- Clean Code
+- Git Version Control
+
+---
+
+# Author
+
+**Muhammad Subhan Shahid**
+
+BS Computer Science Student
+
+FAST – National University of Computer & Emerging Sciences
+
+---
+
+⭐ If you like this project, consider giving it a **Star** on GitHub.
