@@ -6,7 +6,7 @@ The project was developed with a strong focus on **software engineering principl
 
 ---
 
-# 📸 Screenshots
+# Screenshots
 
 ## Main Menu
 
